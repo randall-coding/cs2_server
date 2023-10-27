@@ -11,8 +11,6 @@ SHELL ["/bin/bash", "-c"]
 
 ARG STEAMCMD_URL=https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
 
-RUN apt-get update && apt-get install steam -y
-
 RUN set -xo pipefail \
       && apt-get update \
       && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --no-install-suggests -y \
@@ -54,5 +52,7 @@ USER steam
 WORKDIR ${APP_DIR}
 VOLUME ${APP_DIR}
 
-CMD ["ls .."]
+# CMD ["sleep", "60000"]  #debug
+
+CMD ["ls", ".."]
 ENTRYPOINT exec ../start.sh
