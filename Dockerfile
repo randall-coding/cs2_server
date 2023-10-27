@@ -4,7 +4,7 @@ ENV TERM xterm
 
 ENV STEAM_DIR /home/steam
 ENV STEAMCMD_DIR /home/steam/steamcmd
-ENV APP_ID 740
+ENV APP_ID 730
 ENV APP_DIR /home/steam/cs2
 
 SHELL ["/bin/bash", "-c"]
@@ -29,6 +29,15 @@ RUN set -xo pipefail \
       && curl -sSL ${STEAMCMD_URL} | tar -zx -C ${STEAMCMD_DIR} \
       && mkdir -p ${STEAM_DIR}/.steam/sdk32 \
       && ln -s ${STEAMCMD_DIR}/linux32/steamclient.so ${STEAM_DIR}/.steam/sdk32/steamclient.so \
+      && ${STEAMCMD_DIR}/steamcmd.sh +quit \
+                && ln -s ${STEAMCMD_DIR}/linux32/steamclient.so ${STEAMCMD_DIR}/steamservice.so \
+                && mkdir -p ${HOMEDIR}/.steam/sdk32 \
+                && ln -s ${STEAMCMD_DIR}/linux32/steamclient.so ${HOMEDIR}/.steam/sdk32/steamclient.so \
+                && ln -s ${STEAMCMD_DIR}/linux32/steamcmd ${STEAMCMD_DIR}/linux32/steam \
+                && mkdir -p ${HOMEDIR}/.steam/sdk64 \
+                && ln -s ${STEAMCMD_DIR}/linux64/steamclient.so ${HOMEDIR}/.steam/sdk64/steamclient.so \
+                && ln -s ${STEAMCMD_DIR}/linux64/steamcmd ${STEAMCMD_DIR}/linux64/steam \
+                && ln -s ${STEAMCMD_DIR}/steamcmd.sh ${STEAMCMD_DIR}/steam.sh \
       && { \
             echo '@ShutdownOnFailedCommand 1'; \
             echo '@NoPromptForPassword 1'; \
