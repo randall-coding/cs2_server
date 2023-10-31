@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:22.04
 
 ENV TERM xterm
 
@@ -14,7 +14,7 @@ ARG STEAMCMD_URL=https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux
 RUN set -xo pipefail \
       && apt-get update \
       && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --no-install-suggests -y \
-          lib32gcc1 \
+          lib32gcc-s1 \
           lib32stdc++6 \
           lib32z1 \
           ca-certificates \
@@ -29,14 +29,13 @@ RUN set -xo pipefail \
       && curl -sSL ${STEAMCMD_URL} | tar -zx -C ${STEAMCMD_DIR} \
       && mkdir -p ${STEAM_DIR}/.steam/sdk32 \
       && ln -s ${STEAMCMD_DIR}/linux32/steamclient.so ${STEAM_DIR}/.steam/sdk32/steamclient.so \
+      && mkdir -p ${STEAM_DIR}/.steam/sdk64 \
+      && ln -s ${STEAMCMD_DIR}/linux64/steamclient.so ${STEAM_DIR}/.steam/sdk64/steamclient.so \
       && ${STEAMCMD_DIR}/steamcmd.sh +quit \
                 && ln -s ${STEAMCMD_DIR}/linux32/steamclient.so ${STEAMCMD_DIR}/steamservice.so \
-                && mkdir -p ${HOMEDIR}/.steam/sdk32 \
-                && ln -s ${STEAMCMD_DIR}/linux32/steamclient.so ${HOMEDIR}/.steam/sdk32/steamclient.so \
                 && ln -s ${STEAMCMD_DIR}/linux32/steamcmd ${STEAMCMD_DIR}/linux32/steam \
-                && mkdir -p ${HOMEDIR}/.steam/sdk64 \
-                && ln -s ${STEAMCMD_DIR}/linux64/steamclient.so ${HOMEDIR}/.steam/sdk64/steamclient.so \
                 && ln -s ${STEAMCMD_DIR}/linux64/steamcmd ${STEAMCMD_DIR}/linux64/steam \
+                && mkdir -p ${STEAM_DIR}/.steam/sdk64 \
                 && ln -s ${STEAMCMD_DIR}/steamcmd.sh ${STEAMCMD_DIR}/steam.sh \
       && { \
             echo '@ShutdownOnFailedCommand 1'; \
@@ -50,6 +49,8 @@ RUN set -xo pipefail \
       && chown -R steam:steam ${STEAM_DIR} \
       && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y build-essential lsof
+
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
     LC_ALL=en_US.UTF-8
@@ -59,7 +60,7 @@ RUN chmod +x $STEAM_DIR/start.sh
 
 USER steam
 WORKDIR ${APP_DIR}
-VOLUME ${APP_DIR}
+VOLUME ${STEAM_DIR}
 
 # CMD ["sleep", "60000"]  #debug
 
