@@ -30,10 +30,10 @@ docker run -e STEAM_USER=your_user -e STEAM_PASS=your_password SERVER_TOKEN=your
 
 ### Game Server
 * Server defaults to casual mode (game_mode 0)
-* Map cycle controlled by containerfs/mapcycle.txt
-* Casual game settings controller by containerfs/gamemode_casual_server.cfg
-* Competetive game settings controller by containerfs/gamemode_competitive_server.cfg
-* Run commands in game by setting $RCON_PASSWORD on `docker run``
+* Map cycle controlled by `containerfs/mapcycle.txt`
+* Casual game settings controller by `containerfs/gamemode_casual_server.cfg`
+* Competetive game settings controller by `containerfs/gamemode_competitive_server.cfg`
+* Run admin commands in game by setting $RCON_PASSWORD on `docker run`
 
 ### Important Notes
 * If you change a filename or add a new file in containerfs, you must also update start.sh `mv` command for it.
