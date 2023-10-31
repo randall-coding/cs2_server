@@ -2,7 +2,7 @@
 
 # install
 echo "Installing cs2"
-$STEAMCMD_DIR/steamcmd.sh +@sSteamCmdForcePlatformType linux +force_install_dir $APP_DIR +login $STEAM_USER $STEAM_PASS +app_update 730 +quit
+$STEAMCMD_DIR/steamcmd.sh +force_install_dir $APP_DIR +login $STEAM_USER $STEAM_PASS +app_update 730 +quit
 
 # copy config files
 mv $STEAM_DIR/server.cfg $APP_DIR/game/csgo/cfg/server.cfg
