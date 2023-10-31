@@ -63,5 +63,13 @@ VOLUME ${APP_DIR}
 
 # CMD ["sleep", "60000"]  #debug
 
+EXPOSE 27015/tcp
+EXPOSE 27015/udp
+EXPOSE 27016/tcp
+EXPOSE 27016/udp
+EXPOSE 27020/udp
+EXPOSE 27005/udp
+EXPOSE 26900/udp
+
 CMD ["ls", ".."]
 ENTRYPOINT exec ../start.sh
