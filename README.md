@@ -6,7 +6,7 @@ This repo contains a dockerfile for a simple CS2 server
 ### Environment Variables
 - STEAM_USER  - steam username
 - STEAM_PASS  - steam password
-- SERVER_TOKEN - obtained from app registration (https://steamcommunity.com/dev/managegameservers)
+- SERVER_TOKEN - obtained from [app registration](https://steamcommunity.com/dev/managegameservers)
 - (optional) RCON_PASSWORD - a password which allows admins to run admin commands
 - (optional) SERVER_PASSWORD - a password to join private server
 - (optional) GAME_MODE - 0 - casual mode, 1 - competitive mode, defaults to 0
@@ -14,7 +14,7 @@ This repo contains a dockerfile for a simple CS2 server
 ### Steam Guard
 Disable steam guard on your account during server installation (otherwise it gets stuck at a code prompt).
 
-### Install + run server
+### Install + Run Server
 ```
 docker build . -t cs_server
 docker run -e STEAM_USER=your_user -e STEAM_PASS=your_password SERVER_TOKEN=your_token \
@@ -28,11 +28,11 @@ docker run -e STEAM_USER=your_user -e STEAM_PASS=your_password SERVER_TOKEN=your
     cs_server 
 ```
 
-### Game server
+### Game Server
 * Server defaults to casual mode (game_mode 0)
 * Map cycle controlled by containerfs/mapcycle.txt
 * Casual game settings controller by containerfs/gamemode_casual_server.cfg
-* Competetive game settings controller by containerfs/.cfg
+* Competetive game settings controller by containerfs/gamemode_competitive_server.cfg
 * Run commands in game by setting $RCON_PASSWORD on `docker run``
 
 ### Important Notes
@@ -40,6 +40,6 @@ docker run -e STEAM_USER=your_user -e STEAM_PASS=your_password SERVER_TOKEN=your
 * Bots don't work on competitive mode
 
 ### More information + references
-https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers
-https://developer.valvesoftware.com/wiki/Source_Dedicated_Server
-https://hub.tcno.co/games/cs2/dedicated_server/
+- https://developer.valvesoftware.com/wiki/Counter-Strike_2/Dedicated_Servers
+- https://developer.valvesoftware.com/wiki/Source_Dedicated_Server
+- https://hub.tcno.co/games/cs2/dedicated_server/
