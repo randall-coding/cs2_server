@@ -72,5 +72,4 @@ EXPOSE 27020/udp
 EXPOSE 27005/udp
 EXPOSE 26900/udp
 
-CMD ["ls", ".."]
 ENTRYPOINT exec ../start.sh

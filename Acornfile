@@ -1,0 +1,26 @@
+containers: {
+ web: {
+  image: "ghcr.io/randall-coding/cs2_server:latest"
+  ports: publish: [
+    "27015:27015/tcp",
+    "27015:27015/udp",
+    "27016:27016/tcp",
+    "27016:27016/udp",
+    "27020:27020/udp",
+    "27005:27005/udp",
+    "26900:26900/udp",
+    ]
+  env: {
+    STEAM_USER: "secret://cs2-server/steam_user"
+    STEAM_PASS: "secret://cs2-server/steam_pass"
+    SERVER_TOKEN: "secret://cs2-server/server_token"
+    RCON_PASSWORD: "secret://cs2-server/rcon_password"
+    SERVER_PASSWORD: "secret://cs2-server/server_password"
+    GAME_MODE: "secret://cs2-server/game_mode",
+  }
+ }
+}
+
+secrets: "cs2-server":{
+    external: "cs2-server"
+}
