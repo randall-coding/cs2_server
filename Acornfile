@@ -18,7 +18,14 @@ containers: {
     SERVER_PASSWORD: "secret://cs2-server/server_password"
     GAME_MODE: "secret://cs2-server/game_mode",
   }
+  dirs: "/home/steam/cs2": "cs2"
  }
+}
+
+volumes: cs2: {
+ size: "40G"
+ accessModes: "readWriteOnce"
+ class: "default"
 }
 
 secrets: "cs2-server":{
