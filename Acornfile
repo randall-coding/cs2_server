@@ -2,10 +2,10 @@ containers: {
   web: {
     image: "ghcr.io/randall-coding/cs2_server:latest"
     ports: publish: [
-  //   "27015:27015/tcp",
       "27015:27015/udp",
-      "27016:27016/tcp",
+      "27015:27015/tcp",
       "27016:27016/udp",
+      "27016:27016/tcp",
       "27020:27020/udp",
       "27005:27005/udp",
       "26900:26900/udp",
@@ -34,12 +34,13 @@ containers: {
   }
 }
 
+secrets: "cs2-server":{
+    external: "cs2-server"
+}
+
 //storage limit error
 //volumes: cs2: {
 // size: "40G"
 // accessModes: "readWriteOnce"
 //}
 
-secrets: "cs2-server":{
-    external: "cs2-server"
-}
