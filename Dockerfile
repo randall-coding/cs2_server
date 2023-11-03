@@ -23,7 +23,7 @@ RUN set -xo pipefail \
           curl \
           unzip \
       && locale-gen en_US.UTF-8 \
-      && adduser --disabled-password --gecos "" steam \
+      && adduser -uid 1001 --disabled-password --gecos "" steam \
       && mkdir ${STEAMCMD_DIR} \
       && cd ${STEAMCMD_DIR} \
       && curl -sSL ${STEAMCMD_URL} | tar -zx -C ${STEAMCMD_DIR} \
@@ -45,7 +45,6 @@ RUN set -xo pipefail \
             echo 'app_update ${APP_ID}'; \
             echo 'quit'; \
         } > ${STEAM_DIR}/autoupdate_script.txt \
-      && mkdir ${APP_DIR} \
       && chown -R steam:steam ${STEAM_DIR} \
       && rm -rf /var/lib/apt/lists/*
 
@@ -58,11 +57,12 @@ ENV LANG=en_US.UTF-8 \
 COPY --chown=steam:steam containerfs ${STEAM_DIR}/
 RUN chmod +x $STEAM_DIR/start.sh
 
-USER steam
-WORKDIR ${APP_DIR}
-VOLUME ${STEAM_DIR}
 
-# CMD ["sleep", "60000"]  #debug
+USER steam
+WORKDIR ${STEAM_DIR}
+RUN mkdir volume
+
+VOLUME ${APP_DIR}
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
@@ -72,4 +72,5 @@ EXPOSE 27020/udp
 EXPOSE 27005/udp
 EXPOSE 26900/udp
 
-ENTRYPOINT exec ../start.sh
+# CMD ["sleep", "60000"]  #debug
+ENTRYPOINT exec ./start.sh
