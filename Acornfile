@@ -38,9 +38,8 @@ secrets: "cs2-server":{
     external: "cs2-server"
 }
 
-//storage limit error
-//volumes: cs2: {
-// size: "40G"
-// accessModes: "readWriteOnce"
-//}
+volumes: "home-steam": {
+ size: "40G"
+ accessModes: "readWriteOnce"
+}
 
