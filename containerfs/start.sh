@@ -13,12 +13,12 @@ mv $STEAM_DIR/mapcycle.txt $APP_DIR/game/csgo/mapcycle.txt
 
 # Check if SERVER_PASSWORD is set and if so, append it to server.cfg
 if [[ -n "$SERVER_PASSWORD" ]]; then
-    echo "sv_password \"$SERVER_PASSWORD\"" >> $APP_DIR/game/csgo/cfg/gamemode_casual_server.cfg
+    echo "sv_password \"$SERVER_PASSWORD\"" >> $APP_DIR/game/csgo/cfg/server.cfg
 fi
 
 # Check if RCON_PASSWORD is set and if so, append it to server.cfg
 if [[ -n "$RCON_PASSWORD" ]]; then
-    echo "rcon_password \"$RCON_PASSWORD\"" >> $APP_DIR/game/csgo/cfg/gamemode_casual_server.cfg
+    echo "rcon_password \"$RCON_PASSWORD\"" >> $APP_DIR/game/csgo/cfg/server.cfg
 fi
 
 # create run script
