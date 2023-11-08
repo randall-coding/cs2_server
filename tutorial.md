@@ -1,4 +1,4 @@
-# Quick setup for a Counter Strike 2 Server 
+# Quickly setup a Counter Strike 2 Server 
 
 ## Prerequisites 
 * Github account
@@ -17,16 +17,16 @@ Acorn is a new cloud plaltform that allows you to easily deploy, develop and man
 ## Install acorn cli 
 First we need to install acorn-cli locally.  There are many ways to do this as listed below:
 
-#### Linux or Mac
+**Linux or Mac** <br>
 `curl https://get.acorn.io | sh`
 
-#### Homebrew (Linux or Mac)
+**Homebrew (Linux or Mac)** <br>
 `brew install acorn-io/cli/acorn`
 
-#### Windows 
+**Windows** <br> 
 Uncompress and move the [binary](https://cdn.acrn.io/cli/default_windows_amd64_v1/acorn.exe) to your PATH
 
-#### Windows (Scoop)
+**Windows (Scoop)** <br>
 `scoop install acorn`
 
 For up to date installation instructions, visit the [official docs](https://runtime-docs.acorn.io/installation/installing)
@@ -40,7 +40,7 @@ NOTE: for this deployment you do NOT need to install a Kubernetes cluster locall
 Disable steam guard on your account before server installation (otherwise it gets stuck at a code prompt). Login to https://store.steampowered.com and visit your user settings page to disable steam guard.  Make sure to confirm your email to finish the process.
 
 ### Setup Account
-We will be using an acorn image built from [this Acornfile](https://github.com/randall-coding/cs2_server/blob/master/Acornfile) based on [this Dockerfile](https://github.com/randall-coding/cs2_server/blob/master/Dockerfile).  All the code is open source, which means you can use or modify it to build your own image.
+We will be using an acorn image built from [this Acornfile](https://github.com/randall-coding/cs2_server/blob/master/Acornfile) based on [this Dockerfile](https://github.com/randall-coding/cs2_server/blob/master/Dockerfile).  The code is open source, which means you can use or modify it to build your own image.
 
 To begin, we need to setup an acorn account at acorn.io.  This needs to be a pro account to handle the storage requirements for the game (40GB minimum).  [Self hosting](#self-hosting) is also an option if you know what you're doing.
 
@@ -48,17 +48,17 @@ Visit https://www.acorn.io/pricing and sign up under the Pro plan.
 
 Log into your acorn.io dashboard and set the default region to something other than Sandbox (for increased storage space).  Click the three vertical dots in the top left of the dashboard, click Manage Regions and set the new default region.
 
-Back in your local command terminal login to acorn.io 
+Back in your local command terminal login to acorn.io with: <br>
 `acorn login acorn.io` 
 
 ### Setup Server
 Your server has several basic settings controlled by secrets.  
- * steam_user - steam username
- * steam_pass - steam password
- * server_token - server token.  obtained from [app registration](https://steamcommunity.com/dev/managegameservers), APP ID = 730 
- * rcon_password - a password which allows admins to run admin commands
- * server_password - a password to join private server
- * game_mode - 0 - casual mode, 1 - competitive mode, defaults to 0
+ * **steam_user** - steam username
+ * **steam_pass** - steam password
+ * **server_token** - server token.  obtained from [app registration](https://steamcommunity.com/dev/managegameservers), APP ID = 730 
+ * **rcon_password** - a password which allows admins to run admin commands
+ * **server_password** - a password to join private server
+ * **game_mode** - 0 - casual mode, 1 - competitive mode, defaults to 0
 
 Create secrets for your applicaion using acorn-cli.  Change the <> values to your actual credentials
 ```
@@ -73,9 +73,9 @@ acorn secret create --data steam_user=<username> \
 
 ### Deploy Image
 Now we are all set.  The last step is to deploy our premade acorn image. Run the following command in your terminal.
-NOTE: you can chose any name for the `-n <name>` portion.
 
 `acorn run -s cs2-server:cs2-server -n cs2-server ghcr.io/randall-coding/acorn/cs2_server`
+<br> NOTE: you can chose any name for the `-n <name>` portion.
 
 You should see output about the available endpoints if all goes well.
 
@@ -85,7 +85,9 @@ Take a look at your acorn dashboard, you should see an entry for your cs2 server
 
 To access the server, first click on the server name on the dashboard.  On the right panel, scroll down until you see the "Endpoints" section.  Look for web:27015/udp and click the copy icon for the endpoint.  That is what you use to connect to your server.
 
-Start up Counter Strike 2 on your machine and press the `~` botton to open up your steam terminal.  Type in `connect <your copied endpoint>` replacing <your copied endpoint> with the value for web:27015/udp.  It should immediately launch you into a game on your server.  You can now invite friends to join by giving them the same `connect` command you ran.
+Start up Counter Strike 2 on your machine and press the `~` botton to open up your steam terminal.  
+
+Type in: `connect <your endpoint>`  replacing `<your endpoint>` with the value for web:27015/udp.  It should immediately launch you into a game on your server.  You can now invite friends to join by giving them the same `connect` command you ran.
 
 
 ## Customize your server configuration 
@@ -94,8 +96,8 @@ You can add custom cs2 configuration files by changing the Dockerfile.  Here is 
 * Download the open source repo for the game server https://github.com/randall-coding/cs2_server
 * Update the gamemode_casual_server.cfg or gamemode_competitive_server.cfg files located in the containerfs/ folder depending on your game_mode option.  
 * Rebuild the docker image and push to your own repository (make sure to add your github name instead of "my-github-name")
-  - `docker build . -t ghcr.io/my-github-name/cs2_server`
-  - `docker push ghcr.io/my-github-name/cs2_server` 
+<br>`docker build . -t ghcr.io/my-github-name/cs2_server`
+<br>`docker push ghcr.io/my-github-name/cs2_server` 
 * Update the Acorn file to reference your new image.  Replace ghcr.io/randall-coding/cs2_server with your image name.
 * Build the Acorn yourself using `acorn build -t cs2_server`
 * Push your new acorn image with `acorn run -n <some name> cs2_server`    
