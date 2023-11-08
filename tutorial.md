@@ -1,22 +1,21 @@
 # Quick setup for a Counter Strike 2 Server 
 
 ## Prerequisites 
-We assume you already have:
-* A github account
-* A steam account
+* Github account
+* Steam account
 
 ## Counter Strike 2
 
-Counter Strike 2 is the sequal to the popular online tactical shooter CS:GO.  In fact, Valve has now completely replaced CS:GO with CS2, which some say is closer to a major update to CS:GO than a full fledged sequal.  The graphics are significantly improved, the game runs on a new engine (Source 2), parts of maps have been modified, the UI is updated, new smoke behavior (a significant gameplay mechanic), and server behavior has been tweaked to better handle discrepencies in lagtime.  Nevertheless, the overall gist of the game is exactly the same and that is how players want it to be.  Counter Strike is a game with a high skill threshold where players can put in thousands of hours and still have more to learn.  This time represents an investment which players don't want to go to waste.      
+Counter Strike 2 is the sequal to the popular online tactical shooter CS:GO.  In fact, Valve has completely replaced CS:GO with CS2, which some say is closer to a major update than a full fledged sequal.  The CS2 graphics are significantly improved, the game runs on a new game engine (Source 2), some maps have been modified, the UI is updated, there is new smoke behavior, and server behavior has been tweaked to better handle discrepencies in lagtime.  Nevertheless, the overall gist of the game is the same and that is how players want it to be.  Counter Strike is a game with a high skill threshold where players can put in thousands of hours and still have more to learn.  This time represents an investment which players don't want to go to waste.      
 
-CS2 relies on a network of servers around the globe,just like CS:GO. Players are automatically assigned a public server when they click "Go" on a gameplay mode.  This can be find for most players, but some players or groups want something more customisable and perhaps more private.  Fear not, CS2 allows you to run your own server which you control.  A server where you can goof around with your friends, make your own rules, and configure all sorts of whacky customizations.  You can make this into a public server that anyone can join or a private server that is password protected.  In this tutorial, we will be making and deploying our own CS2 server using pre-made images for easy deployment.  The tool we will use for this is called Acorn.
-
+CS2 relies on servers around the globe,just like CS:GO. Players are automatically assigned a public server when they click "Go" on a gameplay mode.  This can be fine for most players, but some players want something more customisable.  Fear not, CS2 allows you to run your own server which you can control.  A server where you can goof around with your friends, make your own rules, and configure all sorts of whacky customizations.  You can make this a public server that anyone can join or a private server that is password protected.  In this tutorial, we will be making and deploying our own CS2 server using pre-made images for easy deployment.  The tool we will use for this is Acorn.
 
 ## What is Acorn? 
 
-Acorn is a new cloud plaltform that allows you to easily deploy, develop and manage web services with containerization.  A single acorn image can deploy all you need: from a single container webserver, to a multi service kubernetes cluster with high redundancy.  Don't worry if you don't understand what that all means, we don't have to in order to deploy our server.
+Acorn is a new cloud plaltform that allows you to easily deploy, develop and manage web services with containerization.  A single acorn image can deploy all that you need: from a single container webserver, to a multi service kubernetes cluster with high availability.  Don't worry if you don't understand what all those terms mean; we don't have to know that in order to deploy our CS2 server.
 
 ## Install acorn cli 
+First we need to install acorn-cli locally.  There are many ways to do this as listed below:
 
 Linux or Mac
 `curl https://get.acorn.io | sh`
@@ -31,7 +30,7 @@ https://cdn.acrn.io/cli/default_windows_amd64_v1/acorn.exe
 Windows (Scoop)
 `scoop install acorn`
 
-For up to date instructions, visit the up to date instructions page (https://runtime-docs.acorn.io/installation/installing)
+For up to date installation instructions, visit the [official docs](https://runtime-docs.acorn.io/installation/installing)
 NOTE: for this deployment you do NOT need to install a Kubernetes cluster locally.
 
 ## Deploying Our Server 
