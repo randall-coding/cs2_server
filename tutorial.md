@@ -1,4 +1,4 @@
-# Quickly setup a Counter Strike 2 Server 
+# Deploy a Counter Strike 2 Server
 
 ## Prerequisites 
 * Github account
