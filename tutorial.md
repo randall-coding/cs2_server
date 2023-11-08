@@ -41,9 +41,9 @@ NOTE: for this deployment you do NOT need to install a Kubernetes cluster locall
 Disable steam guard on your account before server installation (otherwise it gets stuck at a code prompt). Login to https://store.steampowered.com and few your user settings page to disable steam guard.  Make sure to confirm your email to finish the process.
 
 ### Setup Account
-We will be using an acorn image built from this Acornfile (link) based on this Dockerfile (link).  All the code is open source and you can use or modify it to build your own image.
+We will be using an acorn image built from [this Acornfile](https://github.com/randall-coding/cs2_server/blob/master/Acornfile) based on [this Dockerfile](https://github.com/randall-coding/cs2_server/blob/master/Dockerfile).  All the code is open source and you can use or modify it to build your own image.
 
-To begin we need to setup an acorn account at acorn.io.  It will need to be a pro account to handle the storage requirements for this game (40GB minimum).  Self hosting (link) is also an option.
+To begin we need to setup an acorn account at acorn.io.  It will need to be a pro account to handle the storage requirements for this game (40GB minimum).  [Self hosting](#self-hosting) is also an option.
 
 Visit https://www.acorn.io/pricing and sign up under the Pro plan.
 
@@ -91,7 +91,7 @@ Start up Counter Strike 2 on your machine and press the `~` botton to open up yo
 
 ## Customize your server configuration 
 
-You can add custom configuration files for your server by changing the Dockerfile.  
+You can add custom cs2 configuration files by changing the Dockerfile.  Here is how to do that:
 * Download the open source repo for the game server https://github.com/randall-coding/cs2_server
 * Update the gamemode_casual_server.cfg or gamemode_competitive_server.cfg files located in the containerfs/ folder depending on your game_mode option.  
 * Rebuild the docker image and push to your own repository (make sure to add your github name instead of "my-github-name")
@@ -99,4 +99,10 @@ You can add custom configuration files for your server by changing the Dockerfil
   - `docker push ghcr.io/my-github-name/cs2_server` 
 * Update the Acorn file to reference your new image.  Replace ghcr.io/randall-coding/cs2_server with your image name.
 * Build the Acorn yourself using `acorn build -t cs2_server`
-* Push your new acorn image with `acorn push -n <any name> cs2_server`    
+* Push your new acorn image with `acorn run -n <some name> cs2_server`    
+
+## Self Hosting
+
+If you have experience with Kubernetes, you can self host your own acorn sever rather than using acorn.io.  Assuming you have a Kubernetes cluster set up on your chosen web host (or even locally), follow [these instructions](https://runtime-docs.acorn.io/installation/installing) to install acorn on that machine.  Make sure your kubernetes cluster has a default storage class with a provider capable of allocating 40GB of persistent storage for your CS2 gamefiles.  After that, point your acorn-cli to the kubernetes cluster by modifying your kubeconfig file locally.  From there, you can follow the previous instructions of this tutorial to deploy your server.  
+
+
