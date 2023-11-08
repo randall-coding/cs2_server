@@ -17,38 +17,38 @@ Acorn is a new cloud plaltform that allows you to easily deploy, develop and man
 ## Install acorn cli 
 First we need to install acorn-cli locally.  There are many ways to do this as listed below:
 
-Linux or Mac
+#### Linux or Mac
 `curl https://get.acorn.io | sh`
 
-Homebrew (Linux or Mac)
+#### Homebrew (Linux or Mac)
 `brew install acorn-io/cli/acorn`
 
-Windows 
-Uncompress and move the binary to your PATH
-https://cdn.acrn.io/cli/default_windows_amd64_v1/acorn.exe
+#### Windows 
+Uncompress and move the [binary](https://cdn.acrn.io/cli/default_windows_amd64_v1/acorn.exe) to your PATH
 
-Windows (Scoop)
+#### Windows (Scoop)
 `scoop install acorn`
 
 For up to date installation instructions, visit the [official docs](https://runtime-docs.acorn.io/installation/installing)
+
 NOTE: for this deployment you do NOT need to install a Kubernetes cluster locally.
 
 ## Deploying Our Server 
 
 ### Disable Steam Guard
 
-Disable steam guard on your account before server installation (otherwise it gets stuck at a code prompt). Login to https://store.steampowered.com and few your user settings page to disable steam guard.  Make sure to confirm your email to finish the process.
+Disable steam guard on your account before server installation (otherwise it gets stuck at a code prompt). Login to https://store.steampowered.com and visit your user settings page to disable steam guard.  Make sure to confirm your email to finish the process.
 
 ### Setup Account
-We will be using an acorn image built from [this Acornfile](https://github.com/randall-coding/cs2_server/blob/master/Acornfile) based on [this Dockerfile](https://github.com/randall-coding/cs2_server/blob/master/Dockerfile).  All the code is open source and you can use or modify it to build your own image.
+We will be using an acorn image built from [this Acornfile](https://github.com/randall-coding/cs2_server/blob/master/Acornfile) based on [this Dockerfile](https://github.com/randall-coding/cs2_server/blob/master/Dockerfile).  All the code is open source, which means you can use or modify it to build your own image.
 
-To begin we need to setup an acorn account at acorn.io.  It will need to be a pro account to handle the storage requirements for this game (40GB minimum).  [Self hosting](#self-hosting) is also an option.
+To begin, we need to setup an acorn account at acorn.io.  This needs to be a pro account to handle the storage requirements for the game (40GB minimum).  [Self hosting](#self-hosting) is also an option if you know what you're doing.
 
 Visit https://www.acorn.io/pricing and sign up under the Pro plan.
 
 Log into your acorn.io dashboard and set the default region to something other than Sandbox (for increased storage space).  Click the three vertical dots in the top left of the dashboard, click Manage Regions and set the new default region.
 
-Back in your local command terminal login to your acorn.io 
+Back in your local command terminal login to acorn.io 
 `acorn login acorn.io` 
 
 ### Setup Server
