@@ -8,7 +8,7 @@
 
 Counter Strike 2 is the sequel to the popular online tactical shooter CS:GO.  In fact, Valve has completely replaced CS:GO with CS2, which some say is closer to a major update than a full fledged sequel.  The CS2 graphics are significantly improved, the game runs on a new game engine (Source 2), some maps have been modified, the UI is updated, there is new smoke behavior, and server behavior has been tweaked to better handle discrepancies in lagtime.  Nevertheless, the overall gist of the game is the same and that is how players want it to be.  Counter Strike is a game with a high skill threshold where players can put in thousands of hours and still have more to learn.  This time represents an investment which players don't want to go to waste.      
 
-CS2 relies on servers around the globe,just like CS:GO. Players are automatically assigned a public server when they click "Go" on a gameplay mode.  This can be fine for most players, but some players want something more customisable.  Fear not, CS2 allows you to run your own server which you can control.  A server where you can goof around with your friends, make your own rules, and configure all sorts of wacky customizations.  You can make this a public server that anyone can join or a private server that is password protected.  In this tutorial, we will be making and deploying our own CS2 server using pre-made images for easy deployment.  The tool we will use for this is Acorn.
+CS2 relies on servers around the globe,just like CS:GO. Players are automatically assigned a public server when they click "Go" on a gameplay mode.  This can be fine for most players, but some players want something more customisable.  Fear not, CS2 allows you to run your own server which you can control.  A server where you can goof around with your friends, make your own rules, and configure all sorts of wacky customizations.  You can make this a public server that anyone can join or a private server that is password protected.  In this tutorial, we will be making and deploying our own CS2 server using pre-made images for easy deployment.  The tool we will use for this is called Acorn.
 
 ## What is Acorn? 
 
@@ -33,13 +33,11 @@ For up to date installation instructions, visit the [official docs](https://runt
 
 NOTE: for this deployment you do NOT need to install a Kubernetes cluster locally.
 
-## Deploying Our Server 
+## Disable Steam Guard
 
-### Disable Steam Guard
+Disable steam guard on your steam account before server installation (otherwise it gets stuck at a code prompt). Login to https://store.steampowered.com and visit your user settings page to disable steam guard.  Make sure to confirm your email to finish the process.
 
-Disable steam guard on your account before server installation (otherwise it gets stuck at a code prompt). Login to https://store.steampowered.com and visit your user settings page to disable steam guard.  Make sure to confirm your email to finish the process.
-
-### Setup Account
+## Setup Acorn Account
 We will be using an acorn image built from [this Acornfile](https://github.com/randall-coding/cs2_server/blob/master/Acornfile) based on [this Dockerfile](https://github.com/randall-coding/cs2_server/blob/master/Dockerfile).  The code is open source, which means you can use or modify it to build your own image.
 
 To begin, we need to setup an acorn account at acorn.io.  This needs to be a pro account to handle the storage requirements for the game (40GB minimum).  [Self hosting](#self-hosting) is also an option if you know what you're doing.
@@ -51,7 +49,7 @@ Log into your acorn.io dashboard and set the default region to something other t
 Back in your local command terminal login to acorn.io with: <br>
 `acorn login acorn.io` 
 
-### Setup Server
+## Setup Server
 Your server has several basic settings controlled by secrets.  
  * **steam_user** - steam username
  * **steam_pass** - steam password
@@ -71,11 +69,10 @@ acorn secret create --data steam_user=<username> \
    cs2-server
 ```
 
-### Deploy Image
-Now we are all set.  The last step is to deploy our pre-made acorn image. Run the following command in your terminal.
+## Deploy Image
+The last step is to deploy our pre-made acorn image. Run the following command in your terminal.
 
 `acorn run -s cs2-server:cs2-server -n cs2-server ghcr.io/randall-coding/acorn/cs2_server`
-<br> NOTE: you can chose any name for the `-n <name>` portion.
 
 You should see output about the available endpoints if all goes well.
 
