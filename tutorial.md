@@ -101,6 +101,6 @@ You can add custom cs2 configuration files by changing the Dockerfile.  Here is 
 
 ## Self Hosting
 
-If you have experience with Kubernetes, you can self host your own acorn sever rather than using acorn.io.  Assuming you have a Kubernetes cluster set up on your chosen web host (or even locally), follow [these instructions](https://runtime-docs.acorn.io/installation/installing) to install acorn on that machine.  Make sure your Kubernetes cluster has a default storage class with a provider capable of allocating 40GB of persistent storage for your CS2 game files.  After that, point your acorn-cli to the Kubernetes cluster by modifying your kubeconfig file locally.  From there, you can follow the previous instructions of this tutorial to deploy your server.  
+If you have experience with Kubernetes, you can self host your own acorn sever rather than using acorn.io.  Assuming you have a Kubernetes cluster set up on your chosen web host (or even locally), follow [these instructions](https://runtime-docs.acorn.io/installation/installing) to install acorn on that machine.  Make sure your Kubernetes cluster has a default storage class with a provider capable of allocating 40GB of persistent storage for your CS2 game files.  After that, point your acorn-cli to the Kubernetes cluster by modifying your kubeconfig file locally.  You can then follow the previous instructions of this tutorial to deploy your server.  NOTE: Your endpoint for port 27015 will come from the terminal after running the `acorn run` command.  
 
 
