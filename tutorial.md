@@ -78,7 +78,7 @@ You should see output about the available endpoints if all goes well.
 
 
 ## Play the game  
-Take a look at your acorn dashboard, you should see an entry for your cs2 server being provisioned.  Wait a few minutes until its status is "Running".  
+Take a look at your acorn dashboard, you should see an entry for your CS2 server being provisioned.  Wait a few minutes until its status is "Running".  
 
 To access the server, first click on the server name on the dashboard.  On the right panel, scroll down until you see the "Endpoints" section.  Look for web:27015/udp and click the copy icon for the endpoint.  That is what you use to connect to your server.
 
@@ -89,13 +89,13 @@ Type in: `connect <your endpoint>`  replacing `<your endpoint>` with the value f
 
 ## Customize your server configuration 
 
-You can add custom cs2 configuration files by changing the Dockerfile.  Here is how to do that:
+You can add custom CS2 configuration files by changing the Dockerfile.  Here is how to do that:
 * Download the open source repo for the game server https://github.com/randall-coding/cs2_server
-* Update the gamemode_casual_server.cfg or gamemode_competitive_server.cfg files located in the containerfs/ folder depending on your game_mode option.  
+* Update the `gamemode_casual_server.cfg` or `gamemode_competitive_server.cfg` files located in the `containerfs/` folder depending on your game_mode option.  
 * Rebuild the docker image and push to your own repository (make sure to add your github name instead of "my-github-name")
 <br>`docker build . -t ghcr.io/my-github-name/cs2_server`
 <br>`docker push ghcr.io/my-github-name/cs2_server` 
-* Update the Acorn file to reference your new image.  Replace ghcr.io/randall-coding/cs2_server with your image name.
+* Update the Acorn file to reference your new image.  Replace `ghcr.io/randall-coding/cs2_server` with your image name.
 * Build the Acorn yourself using `acorn build -t cs2_server`
 * Push your new acorn image with `acorn run -n <some name> cs2_server`    
 
