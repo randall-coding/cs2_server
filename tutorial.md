@@ -46,6 +46,8 @@ Visit https://www.acorn.io/pricing and sign up under the Pro plan.
 
 Log into your acorn.io dashboard and set the default region to something other than Sandbox (for increased storage space).  Click the three vertical dots in the top left of the dashboard, click Manage Regions and set the new default region.
 
+![cs2_manage_regions](https://github.com/randall-coding/cs2_server/assets/39175191/a270b3e2-36ff-4f66-b0ef-0f3abfade604)
+
 Back in your local command terminal login to acorn.io with: <br>
 `acorn login acorn.io` 
 
@@ -80,7 +82,11 @@ You should see output about the available endpoints if all goes well.
 ## Play the game  
 Take a look at your acorn dashboard, you should see an entry for your CS2 server being provisioned.  Wait a few minutes until its status is "Running".  
 
+![cs2_acorn_ui](https://github.com/randall-coding/cs2_server/assets/39175191/829b41dc-9a42-44d4-9ef0-c7a81df934f9)
+
 To access the server, first click on the server name on the dashboard.  On the right panel, scroll down until you see the "Endpoints" section.  Look for web:27015/udp and click the copy icon for the endpoint.  That is what you use to connect to your server.
+
+![cs2_endpoints](https://github.com/randall-coding/cs2_server/assets/39175191/fe02485a-aeb3-423f-8b96-145b60caaab9)
 
 Start up Counter Strike 2 on your machine and press the `~` button to open up your steam terminal.  
 
