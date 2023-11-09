@@ -29,7 +29,7 @@ Uncompress and move the [binary](https://cdn.acrn.io/cli/default_windows_amd64_v
 **Windows (Scoop)** <br>
 `scoop install acorn`
 
-For up to date installation instructions, visit the [official docs](https://runtime-docs.acorn.io/installation/installing)
+For up to date installation instructions, visit the [official docs](https://runtime-docs.acorn.io/installation/installing).
 
 NOTE: for this deployment you do NOT need to install a Kubernetes cluster locally.
 
@@ -58,7 +58,7 @@ Your server has several basic settings controlled by secrets.
  * **server_password** - a password to join private server
  * **game_mode** - 0 - casual mode, 1 - competitive mode, defaults to 0
 
-Create secrets for your application using acorn-cli.  Change the <> values to your actual credentials
+Create secrets for your application using acorn-cli.  Change the <> values to your actual credentials.
 ```
 acorn secret create --data steam_user=<username> \
  --data steam_pass=<password> \
