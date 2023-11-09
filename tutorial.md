@@ -56,8 +56,8 @@ Your server has several basic settings controlled by secrets.
  * **steam_user** - steam username
  * **steam_pass** - steam password
  * **server_token** - server token.  obtained from [app registration](https://steamcommunity.com/dev/managegameservers), APP ID = 730 
- * **rcon_password** - a password which allows admins to run admin commands
- * **server_password** - a password to join private server
+ * **rcon_password** (optional)- a password which allows admins to run admin commands
+ * **server_password** (optional)- a password to join private server
  * **game_mode** - 0 - casual mode, 1 - competitive mode, defaults to 0
 
 Create secrets for your application using acorn-cli.  Change the <> values to your actual credentials.
