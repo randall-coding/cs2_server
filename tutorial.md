@@ -15,7 +15,7 @@ CS2 relies on servers around the globe, just like with CS:GO. Players are automa
 Acorn is a new cloud platform that allows you to easily deploy, develop and manage web services with containerization.  A single acorn image can deploy all that you need: from a single container webserver, to a multi service Kubernetes cluster with high availability.  Don't worry if you don't understand what all those terms mean; we don't have to know that in order to deploy our CS2 server.  The acorn image is already made and we just have to deploy it.
 
 ## Install acorn cli 
-First we need to install acorn-cli locally.  There are many ways to do this as listed below:
+First we need to install acorn-cli locally.  Choose an install method from the list below:
 
 **Linux or Mac** <br>
 `curl https://get.acorn.io | sh`
